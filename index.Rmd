@@ -1,0 +1,124 @@
+---
+title: "Cuestionario: Encuesta Cultura Tributaria"
+author: "Julio César Iturra Sanhueza - jciturra@uc.cl"
+date: "01-12-2019"
+output: html_document
+---
+
+# Versión 1.0: {.tabset}
+
+
+<!-- [googlesheets](https://cran.r-project.org/web/packages/googlesheets/vignettes/basic-usage.html) -->
+
+<!-- [vignette](https://cran.r-project.org/web/packages/googlesheets/vignettes/basic-usage.html#authorization-using-oauth2) -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE,warning = FALSE, include = FALSE)
+```
+
+
+```{r }
+library(googlesheets4)
+library(googledrive)
+library(dplyr)
+library(data.table)
+```
+
+
+```{r eval=FALSE}
+rmarkdown::render(input = "index.Rmd",output_format = "html_document", encoding = "UTF-8")
+```
+
+
+```{r eval=FALSE, warning=FALSE}
+sheets_auth() # Autorizar usuario
+```
+
+
+```{r, cache=TRUE, eval=FALSE}
+que01<- read_sheet(ss = "https://docs.google.com/spreadsheets/d/14EBl56DcpkSe9Yk-ct8v65dfnyGTlN9cNYq0tXIg4mQ/edit#gid=661818771", sheet = 6)
+save(que01,file ="data/que01.RData")
+```
+
+```{r}
+load("data/que01.RData")
+dat01 <- que01 %>% select(modulo,varname,pregunta,statement,values) 
+fwrite(x = dat01,file = "data/quest.csv")
+dat02 <- fread(file = "data/quest.csv",encoding = "UTF-8")
+```
+
+```{r}
+dat02$values<- gsub(c("="), c(") "), dat02$values)
+dat02$values<- gsub(c(";"), c("<br>"), dat02$values)
+dat02$values
+```
+
+
+## Compliance {.tabset}
+
+```{r Compliance,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+attach(dat02)
+for(i in 1:132) {
+  cat("  \n ",paste0("**",toupper(varname[i]),"**"))
+  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
+  cat(paste0(values[i],"<br>"))
+}
+```
+
+## Reform {.tabset}
+
+```{r Reform,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+attach(dat02)
+for(i in 133:143) {
+  cat("  \n ",paste0("**",toupper(varname[i]),"**"))
+  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
+  cat(paste0(values[i],"<br>"))
+}
+```
+
+## Social Expenditure {.tabset}
+
+```{r Social Expenditure,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+attach(dat02)
+for(i in c(144:201,295:301)) {
+  cat("  \n ",paste0("**",toupper(varname[i]),"**"))
+  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
+  cat(paste0(values[i],"<br>"))
+}
+```
+
+## Knowledge consciousness {.tabset}
+
+```{r Knowledge consciousness,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+attach(dat02)
+for(i in 202:256) {
+  cat("  \n ",paste0("**",toupper(varname[i]),"**"))
+  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
+  cat(paste0(values[i],"<br>"))
+}
+```
+
+## Attitudes toward Taxes {.tabset}
+
+```{r Attitudes toward Taxes,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+attach(dat02)
+for(i in 257:294) {
+  cat("  \n ",paste0("**",toupper(varname[i]),"**"))
+  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
+  cat(paste0(values[i],"<br>"))
+}
+```
+
+<!-- ## Social Expenditure {.tabset} -->
+
+<!-- ```{r pressure,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE} -->
+<!-- attach(dat02) -->
+<!-- for(i in 295:301) { -->
+<!--   cat("  \n ",paste0("**",toupper(varname[i]),"**")) -->
+<!--   cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>")) -->
+<!--   cat(paste0(values[i],"<br>")) -->
+<!-- } -->
+<!-- ``` -->
+
+
+
