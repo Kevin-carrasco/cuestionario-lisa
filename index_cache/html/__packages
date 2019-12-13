@@ -1,7 +1,11 @@
 base
-googlesheets
+methods
+datasets
+utils
+grDevices
+graphics
+stats
 googlesheets4
 googledrive
 dplyr
-stringi
 data.table

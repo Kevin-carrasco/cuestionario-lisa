@@ -2,7 +2,10 @@
 title: "Cuestionario: Encuesta Cultura Tributaria"
 author: "Julio César Iturra Sanhueza - jciturra@uc.cl"
 date: "01-12-2019"
-output: html_document
+output:
+  html_document:
+    theme: flatly
+    number_sections: true
 ---
 
 # Versión 1.0: {.tabset}
