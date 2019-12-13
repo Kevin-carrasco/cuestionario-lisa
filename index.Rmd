@@ -6,6 +6,8 @@ output:
   html_document:
     theme: flatly
     number_sections: true
+    includes:
+      after_body: disqus.html
 ---
 
 # Versión 1.0: {.tabset}
