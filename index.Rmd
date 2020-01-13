@@ -1,13 +1,20 @@
 ---
-title: "Cuestionario: Encuesta Cultura Tributaria"
-author: "Julio César Iturra Sanhueza - jciturra@uc.cl"
+title: 'Cuestionario: Encuesta Cultura Tributaria'
 date: "01-12-2019"
 output:
   html_document:
-    theme: flatly
-    number_sections: true
     includes:
       after_body: disqus.html
+    number_sections: yes
+    theme: flatly
+  pdf_document:
+    keep_tex: false
+    number_sections: true  
+geometry: margin=0.78in
+editor_options: 
+  chunk_output_type: console
+header-includes:
+- \usepackage[fontsize=7pt]{scrextend}
 ---
 
 # Versión 1.0: {.tabset}
@@ -31,7 +38,7 @@ library(data.table)
 
 
 ```{r eval=FALSE}
-rmarkdown::render(input = "index.Rmd",output_format = "html_document", encoding = "UTF-8")
+rmarkdown::render(input = "index.Rmd",output_format = "all", encoding = "UTF-8")
 ```
 
 
@@ -52,21 +59,39 @@ fwrite(x = dat01,file = "data/quest.csv")
 dat02 <- fread(file = "data/quest.csv",encoding = "UTF-8")
 ```
 
-```{r}
-dat02$values<- gsub(c("="), c(") "), dat02$values)
-dat02$values<- gsub(c(";"), c("<br>"), dat02$values)
-dat02$values
+```{r include=FALSE}
+# Get output document type and use as the format argument in kable function
+library(knitr)
+library(kableExtra)
+
+format01 = if(is_html_output()) {
+  "<br>"
+} else if(is_latex_output()) {
+  " \\newline "
+}
+
+format02 = if(is_html_output()) {
+  "<br>"
+} else if(is_latex_output()) {
+  "\\\\newline "
+}
 ```
 
+
+```{r}
+dat02$values<- gsub(c("="), c(") "), dat02$values)
+dat02$values<- gsub(c(";"), c(format02), dat02$values)
+dat02$values
+```
 
 ## Compliance {.tabset}
 
 ```{r Compliance,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 attach(dat02)
-for(i in 1:132) {
+for(i in c(1:56,65:88)) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
-  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
-  cat(paste0(values[i],"<br>"))
+  cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
+  cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
 
@@ -74,21 +99,22 @@ for(i in 1:132) {
 
 ```{r Reform,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 attach(dat02)
-for(i in 133:143) {
+for(i in 89:99) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
-  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
-  cat(paste0(values[i],"<br>"))
+  cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
+  cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
+
 ```
 
 ## Social Expenditure {.tabset}
 
 ```{r Social Expenditure,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 attach(dat02)
-for(i in c(144:201,295:301)) {
+for(i in c(57:64,100:143,237:268)) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
-  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
-  cat(paste0(values[i],"<br>"))
+  cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
+  cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
 
@@ -96,10 +122,10 @@ for(i in c(144:201,295:301)) {
 
 ```{r Knowledge consciousness,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 attach(dat02)
-for(i in 202:256) {
+for(i in 144:198) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
-  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
-  cat(paste0(values[i],"<br>"))
+  cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
+  cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
 
@@ -107,12 +133,25 @@ for(i in 202:256) {
 
 ```{r Attitudes toward Taxes,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 attach(dat02)
-for(i in 257:294) {
+for(i in 199:248) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
-  cat("  \n ",paste0(pregunta[i],": ","<br>","_**",statement[i],"**_","<br>"))
-  cat(paste0(values[i],"<br>"))
+  cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
+  cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
+
+## Related topics {.tabset}
+
+```{r related topics,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+attach(dat02)
+for(i in 249:260) {
+  cat("  \n ",paste0("**",toupper(varname[i]),"**"))
+  cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
+  cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
+}
+```
+
+
 
 <!-- ## Social Expenditure {.tabset} -->
 

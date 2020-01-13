@@ -6,6 +6,9 @@ navbar:
     - text: ""
       icon: fa-github fa-lg
       href: https://github.com/jciturras/taxes  
+    - text: "PDF "
+      icon: fa-file-pdf
+      href: index.pdf    
  
 output:
   html_document:
