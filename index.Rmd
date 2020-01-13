@@ -8,6 +8,7 @@ output:
     number_sections: yes
     theme: flatly
   pdf_document:
+    toc: true
     keep_tex: false
     number_sections: true  
 geometry: margin=0.78in
