@@ -11,7 +11,7 @@ output:
     toc: true
     keep_tex: false
     number_sections: true  
-geometry: margin=0.78in
+geometry: margin=0.2in
 editor_options: 
   chunk_output_type: console
 header-includes:
