@@ -10,13 +10,33 @@ output:
   pdf_document:
     toc: true
     keep_tex: false
+    template: NULL
     number_sections: true  
-geometry: margin=0.2in
+geometry: "left=1cm,right=1cm,top=1cm,bottom=1cm"
 editor_options: 
   chunk_output_type: console
+  
 header-includes:
-- \usepackage[fontsize=7pt]{scrextend}
+  - \usepackage[fontsize=7pt]{scrextend}
+  - \usepackage{caption}
+  - \captionsetup[figure, table]{labelfont={bf},labelformat={default},labelsep=period}
+  - \usepackage{graphicx}
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{multirow}
+  - \usepackage{wrapfig}
+  - \usepackage{float}
+  - \usepackage{colortbl}
+  - \usepackage{pdflscape}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable}
+  - \pagenumbering{gobble}
+linestretch: '1.0'  
 ---
+
+\pagebreak
 
 # Versión 1.0: {.tabset}
 
@@ -44,7 +64,7 @@ rmarkdown::render(input = "index.Rmd",output_format = "all", encoding = "UTF-8")
 
 
 ```{r eval=FALSE, warning=FALSE}
-sheets_auth() # Autorizar usuario
+sheets_auth() # Autorizar usuario1
 ```
 
 
@@ -58,12 +78,20 @@ load("data/que01.RData")
 dat01 <- que01 %>% select(modulo,varname,pregunta,statement,values) 
 fwrite(x = dat01,file = "data/quest.csv")
 dat02 <- fread(file = "data/quest.csv",encoding = "UTF-8")
+dat03 <- fread(file = "data/quest.csv",encoding = "UTF-8")
 ```
 
 ```{r include=FALSE}
 # Get output document type and use as the format argument in kable function
 library(knitr)
 library(kableExtra)
+
+format = if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+
 
 format01 = if(is_html_output()) {
   "<br>"
@@ -74,7 +102,7 @@ format01 = if(is_html_output()) {
 format02 = if(is_html_output()) {
   "<br>"
 } else if(is_latex_output()) {
-  "\\\\newline "
+  " \\\\newline "
 }
 ```
 
@@ -83,24 +111,46 @@ format02 = if(is_html_output()) {
 dat02$values<- gsub(c("="), c(") "), dat02$values)
 dat02$values<- gsub(c(";"), c(format02), dat02$values)
 dat02$values
+
+dat03$values<- gsub(c("="), c(") "), dat03$values)
+dat03$values<- gsub(c(";"), c("  "), dat03$values)
+dat03$values
 ```
 
 ## Compliance {.tabset}
 
-```{r Compliance,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-attach(dat02)
-for(i in c(1:56,65:88)) {
+```{r Compliance,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
+com01<- dat03 %>% filter(modulo=="Compliance") %>% select(-"modulo")
+attach(com01)
+for(i in 1:dim(com01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
 
+\pagebreak
+
+```{r Compliance2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+kable(com01,booktabs = T, escape=T, longtable=T,caption="Compliance", format =format) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = T,
+                position = "center",
+                font_size = 7) %>%
+  column_spec(column = 1,width = "1 cm") %>%
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "5 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%
+  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+```
+
+\pagebreak
 ## Reform {.tabset}
 
-```{r Reform,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-attach(dat02)
-for(i in 89:99) {
+```{r Reform,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
+ref01<- dat03 %>% filter(modulo=="Reform") %>% select(-"modulo")
+attach(ref01)
+for(i in 1:dim(ref01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
@@ -108,51 +158,126 @@ for(i in 89:99) {
 
 ```
 
+
+```{r Reform2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+kable(ref01,booktabs = T, escape=T, longtable=T,caption="Reform", format =format ) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = T,
+                position = "center",
+                font_size = 7) %>%
+  column_spec(column = 1,width = "1 cm") %>%
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "5 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%
+  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+```
+
+\pagebreak
 ## Social Expenditure {.tabset}
 
-```{r Social Expenditure,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-attach(dat02)
-for(i in c(57:64,100:143,237:268)) {
+```{r Social Expenditure,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
+sec01<- dat03 %>% filter(modulo=="Social Expenditure") %>% select(-"modulo")
+attach(sec01)
+for(i in 1:dim(sec01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
+
+```{r Social Expenditure2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+kable(sec01,booktabs = T, escape=T, longtable=T,caption="Social Expenditure", format =format ) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = T,
+                position = "center",
+                font_size = 7) %>%
+  column_spec(column = 1,width = "1 cm") %>%
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "5 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%
+  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+```
+
 
 ## Knowledge consciousness {.tabset}
 
-```{r Knowledge consciousness,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-attach(dat02)
-for(i in 144:198) {
+```{r Knowledge consciousness,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
+kno01<- dat03 %>% filter(modulo=="Knowledge consciousness") %>% select(-"modulo")
+attach(kno01)
+for(i in 1:dim(kno01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
+
+```{r Knowledge consciousness2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+kable(kno01,booktabs = T,escape=T, longtable=T,caption="Knowledge consciousness", format =format ) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = T,
+                position = "center",
+                font_size = 7) %>%
+  column_spec(column = 1,width = "1 cm") %>%
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "5 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%
+  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+```
+
+\pagebreak
 
 ## Attitudes toward Taxes {.tabset}
 
-```{r Attitudes toward Taxes,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-attach(dat02)
-for(i in 199:248) {
+```{r Attitudes toward Taxes,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
+att01<- dat03 %>% filter(modulo=="Attitudes toward Taxes") %>% select(-"modulo")
+
+attach(att01)
+for(i in 1:dim(att01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
 
-## Related topics {.tabset}
+```{r Attitudes toward Taxes2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+kable(att01,booktabs = T, ,escape=T, longtable=T,caption="Attitudes toward Taxes", format =format ) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = T,
+                position = "center",
+                font_size = 7) %>%
+  column_spec(column = 1,width = "1 cm") %>%
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "5 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%
+  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+```
 
-```{r related topics,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-attach(dat02)
-for(i in 249:260) {
+\pagebreak
+
+## Redistribution {.tabset}
+
+```{r Redistribution,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
+red01<- dat03 %>% filter(modulo=="Redistribution") %>% select(-"modulo")
+attach(red01)
+for(i in 1:dim(red01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 ```
 
-
+```{r Redistribution2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+kable(red01,booktabs = T, ,escape=T, longtable=T,caption="Redistribution", format =format ) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = T,
+                position = "center",
+                font_size = 7) %>%
+  column_spec(column = 1,width = "1 cm") %>%
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "5 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%
+  collapse_rows(columns = c(2),valign = "top") %>% landscape() 
+```
 
 <!-- ## Social Expenditure {.tabset} -->
 

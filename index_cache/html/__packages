@@ -1,5 +1,13 @@
 base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
 googlesheets4
 googledrive
 dplyr
 data.table
+knitr
+kableExtra
