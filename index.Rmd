@@ -320,8 +320,9 @@ kable(backsocdem,
       col.names = c("Pregunta","Valores")) %>%
   kable_styling(latex_options = c("repeat_header"),
                 full_width = F,
+                position = "float_left",
                 font_size = 8) %>% 
-  column_spec(column = 1,width = "20 cm") %>%
+  column_spec(column = 1,width = "16 cm") %>%
   column_spec(column = 2,width = "12 cm")
 ```
 \pagebreak
@@ -340,8 +341,9 @@ kable(backlab,
       col.names = c("Pregunta","Valores")) %>%
   kable_styling(latex_options = c("repeat_header"),
                 full_width = F,
+                position = "float_left",
                 font_size = 8) %>% 
-  column_spec(column = 1,width = "20 cm") %>%
+  column_spec(column = 1,width = "16 cm") %>%
   column_spec(column = 2,width = "12 cm")
 ```
 \pagebreak
@@ -360,8 +362,9 @@ kable(backsocecon,
       col.names = c("Pregunta","Valores")) %>%
   kable_styling(latex_options = c("repeat_header"),
                 full_width = F,
+                position = "float_left",
                 font_size = 8) %>% 
-  column_spec(column = 1,width = "20 cm") %>%
+  column_spec(column = 1,width = "16 cm") %>%
   column_spec(column = 2,width = "12 cm")
 ```
 
