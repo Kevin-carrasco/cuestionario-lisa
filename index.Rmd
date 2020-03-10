@@ -11,8 +11,11 @@ output:
     toc: true
     keep_tex: false
     template: NULL
-    number_sections: true  
-geometry: "left=1cm,right=1cm,top=1cm,bottom=1cm"
+    number_sections: true 
+classoption: 
+  - landscape
+  - legalpaper     
+geometry: "left=0.5cm,right=0.5cm,top=0.5cm,bottom=0.5cm"
 editor_options: 
   chunk_output_type: console
   
@@ -47,6 +50,7 @@ linestretch: '1.0'
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message = FALSE,warning = FALSE, include = FALSE)
+options(knitr.kable.NA = '')
 ```
 
 
@@ -69,7 +73,7 @@ sheets_auth() # Autorizar usuario1
 
 
 ```{r, cache=TRUE, eval=FALSE}
-que01<- read_sheet(ss = "https://docs.google.com/spreadsheets/d/14EBl56DcpkSe9Yk-ct8v65dfnyGTlN9cNYq0tXIg4mQ/edit#gid=661818771", sheet = 6)
+que01<- read_sheet(ss = "https://docs.google.com/spreadsheets/d/14EBl56DcpkSe9Yk-ct8v65dfnyGTlN9cNYq0tXIg4mQ/edit#gid=661818771", sheet = 4)
 save(que01,file ="data/que01.RData")
 ```
 
@@ -127,21 +131,21 @@ for(i in 1:dim(com01)[1]) {
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
+
+com01$pregunta[duplicated(com01$pregunta)] <- NA
 ```
 
-\pagebreak
 
 ```{r Compliance2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 kable(com01,booktabs = T, escape=T, longtable=T,caption="Compliance", format =format) %>% 
-  kable_styling(latex_options = c("repeat_header"),
-                full_width = T,
-                position = "center",
-                font_size = 7) %>%
+  kable_styling(latex_options = c("repeat_header", "scale_down"),
+                full_width = F,
+                position = "float_left",
+                font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "8 cm") %>%
-  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
 ```
 
 \pagebreak
@@ -156,20 +160,20 @@ for(i in 1:dim(ref01)[1]) {
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
 
+ref01$pregunta[duplicated(ref01$pregunta)] <- NA
 ```
 
 
 ```{r Reform2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 kable(ref01,booktabs = T, escape=T, longtable=T,caption="Reform", format =format ) %>% 
-  kable_styling(latex_options = c("repeat_header"),
-                full_width = T,
-                position = "center",
-                font_size = 7) %>%
+ kable_styling(latex_options = c("repeat_header", "scale_down"),
+                full_width = F,
+                position = "float_left",
+                font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "8 cm") %>%
-  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle") 
 ```
 
 \pagebreak
@@ -183,22 +187,23 @@ for(i in 1:dim(sec01)[1]) {
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
+
+sec01$pregunta[duplicated(sec01$pregunta)] <- NA
 ```
 
 ```{r Social Expenditure2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 kable(sec01,booktabs = T, escape=T, longtable=T,caption="Social Expenditure", format =format ) %>% 
-  kable_styling(latex_options = c("repeat_header"),
-                full_width = T,
-                position = "center",
-                font_size = 7) %>%
+ kable_styling(latex_options = c("repeat_header", "scale_down"),
+                full_width = F,
+                position = "float_left",
+                font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "8 cm") %>%
-  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
 ```
 
-
+\pagebreak
 ## Knowledge consciousness {.tabset}
 
 ```{r Knowledge consciousness,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
@@ -209,19 +214,19 @@ for(i in 1:dim(kno01)[1]) {
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
+kno01$pregunta[duplicated(kno01$pregunta)] <- NA
 ```
 
 ```{r Knowledge consciousness2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 kable(kno01,booktabs = T,escape=T, longtable=T,caption="Knowledge consciousness", format =format ) %>% 
-  kable_styling(latex_options = c("repeat_header"),
-                full_width = T,
-                position = "center",
-                font_size = 7) %>%
+ kable_styling(latex_options = c("repeat_header", "scale_down"),
+                full_width = F,
+                position = "float_left",
+                font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "8 cm") %>%
-  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
 ```
 
 \pagebreak
@@ -237,19 +242,19 @@ for(i in 1:dim(att01)[1]) {
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
+att01$pregunta[duplicated(att01$pregunta)] <- NA
 ```
 
 ```{r Attitudes toward Taxes2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
 kable(att01,booktabs = T, ,escape=T, longtable=T,caption="Attitudes toward Taxes", format =format ) %>% 
-  kable_styling(latex_options = c("repeat_header"),
-                full_width = T,
-                position = "center",
-                font_size = 7) %>%
+ kable_styling(latex_options = c("repeat_header", "scale_down"),
+                full_width = F,
+                position = "float_left",
+                font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "8 cm") %>%
-  collapse_rows(columns = c(2),valign = "top") %>% landscape()
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
 ```
 
 \pagebreak
@@ -264,20 +269,21 @@ for(i in 1:dim(red01)[1]) {
   cat("  \n ",paste0(pregunta[i],": ",format01,ifelse(test = (statement[i]==""),yes = "",no = paste0("_**",statement[i],"**_",format01))))
   cat(paste0(values[i],format01, ifelse(test = is_latex_output(),yes = format01,no = "")))
 }
+red01$pregunta[duplicated(red01$pregunta)] <- NA
 ```
 
 ```{r Redistribution2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-kable(red01,booktabs = T, ,escape=T, longtable=T,caption="Redistribution", format =format ) %>% 
-  kable_styling(latex_options = c("repeat_header"),
-                full_width = T,
-                position = "center",
-                font_size = 7) %>%
+kable(red01,booktabs = T, escape=T, longtable=T,caption="Redistribution", format =format ) %>% 
+ kable_styling(latex_options = c("repeat_header", "scale_down"),
+                full_width = F,
+                position = "float_left",
+                font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "8 cm") %>%
-  collapse_rows(columns = c(2),valign = "top") %>% landscape() 
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
 ```
+
 
 <!-- ## Social Expenditure {.tabset} -->
 
@@ -289,6 +295,77 @@ kable(red01,booktabs = T, ,escape=T, longtable=T,caption="Redistribution", forma
 <!--   cat(paste0(values[i],"<br>")) -->
 <!-- } -->
 <!-- ``` -->
+
+\pagebreak
+## Background vars {.tabset}
+
+```{r}
+back01 <- xlsx::read.xlsx(file = "data/background_vars.xlsx",sheetIndex = 1,encoding = "UTF-8")
+```
+
+
+### Sociodemográfico
+
+```{r socdem,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+
+backsocdem<- filter(back01[,c("var","values","notes")],notes=="sociodemografico")
+backsocdem <- backsocdem[,c("var","values")]
+kable(backsocdem, 
+      linesep="",
+      booktabs = T,
+      escape=T, 
+      longtable=T,
+      caption="Background variables", 
+      format =format,
+      col.names = c("Pregunta","Valores")) %>%
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = F,
+                font_size = 8) %>% 
+  column_spec(column = 1,width = "20 cm") %>%
+  column_spec(column = 2,width = "12 cm")
+```
+\pagebreak
+### Laboral-ocupacional
+
+```{r laboral,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+backlab<- filter(back01[,c("var","values","notes")],notes=="laboral-ocupacional")
+backlab <- backlab[,c("var","values")]
+kable(backlab, 
+      linesep="",
+      booktabs = T,
+      escape=T, 
+      longtable=T,
+      caption="Background variables", 
+      format =format,
+      col.names = c("Pregunta","Valores")) %>%
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = F,
+                font_size = 8) %>% 
+  column_spec(column = 1,width = "20 cm") %>%
+  column_spec(column = 2,width = "12 cm")
+```
+\pagebreak
+### Socioeconómico
+
+```{r socioecon,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+backsocecon<- filter(back01[,c("var","values","notes")],notes=="socioeconomico")
+backsocecon <- backsocecon[,c("var","values")]
+kable(backsocecon, 
+      linesep="",
+      booktabs = T,
+      escape=T, 
+      longtable=T,
+      caption="Background variables", 
+      format =format,
+      col.names = c("Pregunta","Valores")) %>%
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = F,
+                font_size = 8) %>% 
+  column_spec(column = 1,width = "20 cm") %>%
+  column_spec(column = 2,width = "12 cm")
+```
+
+
 
 
 

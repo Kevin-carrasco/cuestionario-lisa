@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Versi\IeC {\'o}n 1.0:}{}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}Compliance}{}{subsection.1.1}% 
+\contentsline {subsection}{\numberline {1.2}Reform}{}{subsection.1.2}% 
+\contentsline {subsection}{\numberline {1.3}Social Expenditure}{}{subsection.1.3}% 
+\contentsline {subsection}{\numberline {1.4}Knowledge consciousness}{}{subsection.1.4}% 
+\contentsline {subsection}{\numberline {1.5}Attitudes toward Taxes}{}{subsection.1.5}% 
+\contentsline {subsection}{\numberline {1.6}Redistribution}{}{subsection.1.6}% 
+\contentsline {subsection}{\numberline {1.7}Background vars}{}{subsection.1.7}% 
+\contentsline {subsubsection}{\numberline {1.7.1}Sociodemogr\IeC {\'a}fico}{}{subsubsection.1.7.1}% 
+\contentsline {subsubsection}{\numberline {1.7.2}Laboral-ocupacional}{}{subsubsection.1.7.2}% 
+\contentsline {subsubsection}{\numberline {1.7.3}Socioecon\IeC {\'o}mico}{}{subsubsection.1.7.3}% 
