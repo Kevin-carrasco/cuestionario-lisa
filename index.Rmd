@@ -17,8 +17,8 @@ classoption:
   - legalpaper     
 geometry: "left=0.5cm,right=0.5cm,top=0.5cm,bottom=0.5cm"
 editor_options: 
-  chunk_output_type: console
   
+  chunk_output_type: console
 header-includes:
   - \usepackage[fontsize=7pt]{scrextend}
   - \usepackage{caption}
@@ -79,7 +79,7 @@ save(que01,file ="data/que01.RData")
 
 ```{r}
 load("data/que01.RData")
-dat01 <- que01 %>% select(modulo,varname,pregunta,statement,values) 
+dat01 <- que01 %>% select(varmodule,varname,pregunta,statement,values) 
 fwrite(x = dat01,file = "data/quest.csv")
 dat02 <- fread(file = "data/quest.csv",encoding = "UTF-8")
 dat03 <- fread(file = "data/quest.csv",encoding = "UTF-8")
@@ -124,7 +124,7 @@ dat03$values
 ## Compliance {.tabset}
 
 ```{r Compliance,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
-com01<- dat03 %>% filter(modulo=="Compliance") %>% select(-"modulo")
+com01<- dat03 %>% filter(varmodule=="com") %>% select(-"varmodule")
 attach(com01)
 for(i in 1:dim(com01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
@@ -152,7 +152,7 @@ kable(com01,booktabs = T, escape=T, longtable=T,caption="Compliance", format =fo
 ## Reform {.tabset}
 
 ```{r Reform,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
-ref01<- dat03 %>% filter(modulo=="Reform") %>% select(-"modulo")
+ref01<- dat03 %>% filter(varmodule=="ref") %>% select(-"varmodule")
 attach(ref01)
 for(i in 1:dim(ref01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
@@ -180,7 +180,7 @@ kable(ref01,booktabs = T, escape=T, longtable=T,caption="Reform", format =format
 ## Social Expenditure {.tabset}
 
 ```{r Social Expenditure,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
-sec01<- dat03 %>% filter(modulo=="Social Expenditure") %>% select(-"modulo")
+sec01<- dat03 %>% filter(varmodule=="sce") %>% select(-"varmodule")
 attach(sec01)
 for(i in 1:dim(sec01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
@@ -207,7 +207,7 @@ kable(sec01,booktabs = T, escape=T, longtable=T,caption="Social Expenditure", fo
 ## Knowledge consciousness {.tabset}
 
 ```{r Knowledge consciousness,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
-kno01<- dat03 %>% filter(modulo=="Knowledge consciousness") %>% select(-"modulo")
+kno01<- dat03 %>% filter(varmodule=="kno") %>% select(-"varmodule")
 attach(kno01)
 for(i in 1:dim(kno01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
@@ -234,7 +234,7 @@ kable(kno01,booktabs = T,escape=T, longtable=T,caption="Knowledge consciousness"
 ## Attitudes toward Taxes {.tabset}
 
 ```{r Attitudes toward Taxes,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
-att01<- dat03 %>% filter(modulo=="Attitudes toward Taxes") %>% select(-"modulo")
+att01<- dat03 %>% filter(varmodule=="att") %>% select(-"varmodule")
 
 attach(att01)
 for(i in 1:dim(att01)[1]) {
@@ -262,7 +262,7 @@ kable(att01,booktabs = T, ,escape=T, longtable=T,caption="Attitudes toward Taxes
 ## Redistribution {.tabset}
 
 ```{r Redistribution,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=FALSE}
-red01<- dat03 %>% filter(modulo=="Redistribution") %>% select(-"modulo")
+red01<- dat03 %>% filter(varmodule=="res") %>% select(-"varmodule")
 attach(red01)
 for(i in 1:dim(red01)[1]) {
   cat("  \n ",paste0("**",toupper(varname[i]),"**"))
