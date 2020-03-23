@@ -73,14 +73,19 @@ sheets_auth() # Autorizar usuario1
 
 
 ```{r, cache=TRUE, eval=FALSE}
-que01<- read_sheet(ss = "https://docs.google.com/spreadsheets/d/14EBl56DcpkSe9Yk-ct8v65dfnyGTlN9cNYq0tXIg4mQ/edit#gid=661818771", sheet = 4)
+que01<- read_sheet(ss = "https://docs.google.com/spreadsheets/d/14EBl56DcpkSe9Yk-ct8v65dfnyGTlN9cNYq0tXIg4mQ/edit#gid=661818771", sheet = 3)
 save(que01,file ="data/que01.RData")
 ```
 
 ```{r}
 load("data/que01.RData")
 dat01 <- que01 %>% select(varmodule,varname,pregunta,statement,values) 
-fwrite(x = dat01,file = "data/quest.csv")
+delete<- c("com05_1","com05_2","com05_3","com05_4","com05_5","com05_6",
+           "com05_7","com05_8","com05_9","com05_10","com05_11","com05_12",
+           "com08_1","com08_2","com08_6","com09_1","com09_2","com09_6","com10_6",
+           "com10_7","com10_9","com10_10","com15_1","ref17_2","ref17_3","ref17_4","ref17_5","att09_2")
+dat01 <- dat01 %>% filter(!(varname  %in%  delete))
+fwrite(x = dat01,file = "data/quest.csv",sep = ",")
 dat02 <- fread(file = "data/quest.csv",encoding = "UTF-8")
 dat03 <- fread(file = "data/quest.csv",encoding = "UTF-8")
 ```
@@ -300,7 +305,8 @@ kable(red01,booktabs = T, escape=T, longtable=T,caption="Redistribution", format
 ## Background vars {.tabset}
 
 ```{r}
-back01 <- xlsx::read.xlsx(file = "data/background_vars.xlsx",sheetIndex = 1,encoding = "UTF-8")
+# back01 <- xlsx::read.xlsx(file = "data/background_vars.xlsx",sheetIndex = 1,encoding = "UTF-8")
+back01 <- fread(file = "data/background_vars.csv")
 ```
 
 
