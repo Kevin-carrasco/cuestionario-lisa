@@ -83,7 +83,8 @@ dat01 <- que01 %>% select(varmodule,varname,pregunta,statement,values)
 delete<- c("com05_1","com05_2","com05_3","com05_4","com05_5","com05_6",
            "com05_7","com05_8","com05_9","com05_10","com05_11","com05_12",
            "com08_1","com08_2","com08_6","com09_1","com09_2","com09_6","com10_6",
-           "com10_7","com10_9","com10_10","com15_1","ref17_2","ref17_3","ref17_4","ref17_5","att09_2")
+           "com10_7","com10_9","com10_10","com15_1","ref17_2","ref17_3","ref17_4","ref17_5","att09_2",
+           "com06_15","com13_01","kno03_01","kno05_01","att04_03","att05_06","att05_07","att05_08","att08_01","att08_02","att08_03")
 dat01 <- dat01 %>% filter(!(varname  %in%  delete))
 fwrite(x = dat01,file = "data/quest.csv",sep = ",")
 dat02 <- fread(file = "data/quest.csv",encoding = "UTF-8")
