@@ -151,7 +151,7 @@ kable(com01,booktabs = T, escape=T, longtable=T,caption="Compliance", format =fo
   column_spec(column = 1,width = "1 cm") %>%
   column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
 ```
 
 \pagebreak
@@ -179,7 +179,7 @@ kable(ref01,booktabs = T, escape=T, longtable=T,caption="Reform", format =format
   column_spec(column = 1,width = "1 cm") %>%
   column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle") 
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major") 
 ```
 
 \pagebreak
@@ -206,7 +206,7 @@ kable(sec01,booktabs = T, escape=T, longtable=T,caption="Social Expenditure", fo
   column_spec(column = 1,width = "1 cm") %>%
   column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
 ```
 
 \pagebreak
@@ -252,7 +252,7 @@ att01$pregunta[duplicated(att01$pregunta)] <- NA
 ```
 
 ```{r Attitudes toward Taxes2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-kable(att01,booktabs = T, ,escape=T, longtable=T,caption="Attitudes toward Taxes", format =format ) %>% 
+kable(att01,booktabs = T,escape=T, longtable=T,caption="Attitudes toward Taxes", format =format ) %>% 
  kable_styling(latex_options = c("repeat_header", "scale_down"),
                 full_width = F,
                 position = "float_left",
@@ -260,7 +260,7 @@ kable(att01,booktabs = T, ,escape=T, longtable=T,caption="Attitudes toward Taxes
   column_spec(column = 1,width = "1 cm") %>%
   column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
 ```
 
 \pagebreak
@@ -287,7 +287,7 @@ kable(red01,booktabs = T, escape=T, longtable=T,caption="Redistribution", format
   column_spec(column = 1,width = "1 cm") %>%
   column_spec(column = 2,width = "14 cm") %>%
   column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
+  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
 ```
 
 
