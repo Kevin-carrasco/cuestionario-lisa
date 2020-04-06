@@ -1,6 +1,5 @@
 ---
 title: 'Cuestionario: Encuesta Cultura Tributaria'
-date: "01-12-2019"
 output:
   html_document:
     includes:
@@ -38,6 +37,8 @@ header-includes:
   - \pagenumbering{gobble}
 linestretch: '1.0'  
 ---
+
+> Última actualización `r format(Sys.time(), "%A %d %B %Y %X")`
 
 \pagebreak
 
