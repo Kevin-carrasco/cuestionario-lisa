@@ -1,41 +1,42 @@
 ---
 title: 'Cuestionario: Encuesta Cultura Tributaria'
+editor_options:
+  chunk_output_type: console
+geometry: left=0.5cm,right=0.5cm,top=0.5cm,bottom=0.5cm
 output:
+  pdf_document:
+    keep_tex: no
+    number_sections: yes
+    template: null
+    toc: yes
+    toc_depth: 3  
   html_document:
     includes:
       after_body: disqus.html
     number_sections: yes
     theme: flatly
-  pdf_document:
-    toc: true
-    keep_tex: false
-    template: NULL
-    number_sections: true 
-classoption: 
-  - landscape
-  - legalpaper     
-geometry: "left=0.5cm,right=0.5cm,top=0.5cm,bottom=0.5cm"
-editor_options: 
-  
-  chunk_output_type: console
+linestretch: '1.0'
 header-includes:
-  - \usepackage[fontsize=7pt]{scrextend}
-  - \usepackage{caption}
-  - \captionsetup[figure, table]{labelfont={bf},labelformat={default},labelsep=period}
-  - \usepackage{graphicx}
-  - \usepackage{float}
-  - \usepackage{booktabs}
-  - \usepackage{longtable}
-  - \usepackage{array}
-  - \usepackage{multirow}
-  - \usepackage{wrapfig}
-  - \usepackage{float}
-  - \usepackage{colortbl}
-  - \usepackage{pdflscape}
-  - \usepackage{tabu}
-  - \usepackage{threeparttable}
-  - \pagenumbering{gobble}
-linestretch: '1.0'  
+- \usepackage{times}
+- \usepackage[fontsize=7pt]{scrextend}
+- \usepackage{caption}
+- \captionsetup[figure, table]{labelfont={bf},labelformat={default},labelsep=period}
+- \usepackage{graphicx}
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \pagenumbering{gobble}
+classoption:
+- landscape
+- legalpaper
 ---
 
 > Última actualización `r format(Sys.time(), "%A %d %B %Y %X")`
@@ -64,7 +65,7 @@ library(data.table)
 
 
 ```{r eval=FALSE}
-rmarkdown::render(input = "index.Rmd",output_format = "all", encoding = "UTF-8")
+rmarkdown::render(input = "index.Rmd",output_format = "all", encoding = "UTF-8");system2("open","index.pdf") 
 ```
 
 
@@ -74,19 +75,45 @@ sheets_auth() # Autorizar usuario1
 
 
 ```{r, cache=TRUE, eval=FALSE}
-que01<- read_sheet(ss = "https://docs.google.com/spreadsheets/d/14EBl56DcpkSe9Yk-ct8v65dfnyGTlN9cNYq0tXIg4mQ/edit#gid=661818771", sheet = 3)
+que01<- read_sheet(ss = "https://docs.google.com/spreadsheets/d/14EBl56DcpkSe9Yk-ct8v65dfnyGTlN9cNYq0tXIg4mQ/edit#gid=661818771", sheet = 3) 
 save(que01,file ="data/que01.RData")
 ```
 
 ```{r}
 load("data/que01.RData")
 dat01 <- que01 %>% select(varmodule,varname,pregunta,statement,values) 
+```
+
+```{r}
 delete<- c("com05_1","com05_2","com05_3","com05_4","com05_5","com05_6",
            "com05_7","com05_8","com05_9","com05_10","com05_11","com05_12",
            "com08_1","com08_2","com08_6","com09_1","com09_2","com09_6","com10_6",
            "com10_7","com10_9","com10_10","com15_1","ref17_2","ref17_3","ref17_4","ref17_5","att09_2",
-           "com06_15","com13_01","kno03_01","kno05_01","att04_03","att05_06","att05_07","att05_08","att08_01","att08_02","att08_03")
-dat01 <- dat01 %>% filter(!(varname  %in%  delete))
+           "com06_15","com13_01","kno03_01","kno05_01","att04_03","att05_06","att05_07","att05_08","att08_01","att08_02","att08_03") 
+
+delete2<- c("com06_1","com06_2","com06_3","com06_4","com06_5","com06_6","com06_7","com06_8","com06_9","com06_10",
+            "com06_11","com06_12","com06_13","com06_14","com06_16","com10_4","com10_5","com13_6","com14_2","com15_2","sce10_1",
+            "sce10_2","sce10_3","sce10_4","sce10_5","sce10_6","sce10_7","sce10_8",
+            "kno01_2","kno01_3", #remplazadas por kno01_4 y kno01_5
+            "kno02_1","kno03_1","kno05_1","kno06_3","kno07_6","kno07_7","kno07_8","kno07_9","kno07_10",
+            "att04_3","att05_6","att05_7","att05_8","att06_4","att08_1","att08_2","att08_3","att09_4",
+            "att12_2","att13_1","att13_2","att13_3") # Filtro 14.04.2020
+```
+
+```{r}
+dat01 <- dat01 %>% filter(!(varname  %in%  delete))  #Filtro 1
+dat01 <- dat01 %>% filter(!(varname  %in%  delete2)) #Filtro 2 (14.04.2020)
+```
+
+```{r include=FALSE}
+# pasar a excel
+exdat01<- dat01
+df <- exdat01[order(exdat01$varname),]
+xlsx::write.xlsx(x = df,file ="data/quest_v01.xlsx",showNA = FALSE,sheetName = "variables")
+system2("open","data/quest_v01.xlsx") 
+```
+
+```{r}
 fwrite(x = dat01,file = "data/quest.csv",sep = ",")
 dat02 <- fread(file = "data/quest.csv",encoding = "UTF-8")
 dat03 <- fread(file = "data/quest.csv",encoding = "UTF-8")
@@ -102,7 +129,6 @@ format = if(is_html_output()) {
 } else if(is_latex_output()) {
   "latex"
 }
-
 
 format01 = if(is_html_output()) {
   "<br>"
@@ -142,9 +168,13 @@ for(i in 1:dim(com01)[1]) {
 com01$pregunta[duplicated(com01$pregunta)] <- NA
 ```
 
+```{r}
+colnames <- c("Código","Pregunta","Indicador","Valores")
+```
+
 
 ```{r Compliance2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-kable(com01,booktabs = T, escape=T, longtable=T,caption="Compliance", format =format) %>% 
+kable(com01,booktabs = T, escape=T, longtable=T,caption="Compliance", format =format,col.names = colnames) %>% 
   kable_styling(latex_options = c("repeat_header", "scale_down"),
                 full_width = F,
                 position = "float_left",
@@ -172,7 +202,7 @@ ref01$pregunta[duplicated(ref01$pregunta)] <- NA
 
 
 ```{r Reform2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-kable(ref01,booktabs = T, escape=T, longtable=T,caption="Reform", format =format ) %>% 
+kable(ref01,booktabs = T, escape=T, longtable=T,caption="Reform", format =format,col.names = colnames) %>% 
  kable_styling(latex_options = c("repeat_header", "scale_down"),
                 full_width = F,
                 position = "float_left",
@@ -199,7 +229,7 @@ sec01$pregunta[duplicated(sec01$pregunta)] <- NA
 ```
 
 ```{r Social Expenditure2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-kable(sec01,booktabs = T, escape=T, longtable=T,caption="Social Expenditure", format =format ) %>% 
+kable(sec01,booktabs = T, escape=T, longtable=T,caption="Social Expenditure", format =format,col.names = colnames) %>% 
  kable_styling(latex_options = c("repeat_header", "scale_down"),
                 full_width = F,
                 position = "float_left",
@@ -225,7 +255,7 @@ kno01$pregunta[duplicated(kno01$pregunta)] <- NA
 ```
 
 ```{r Knowledge consciousness2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-kable(kno01,booktabs = T,escape=T, longtable=T,caption="Knowledge consciousness", format =format ) %>% 
+kable(kno01,booktabs = T,escape=T, longtable=T,caption="Knowledge consciousness", format =format,col.names = colnames) %>% 
  kable_styling(latex_options = c("repeat_header", "scale_down"),
                 full_width = F,
                 position = "float_left",
@@ -253,7 +283,7 @@ att01$pregunta[duplicated(att01$pregunta)] <- NA
 ```
 
 ```{r Attitudes toward Taxes2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-kable(att01,booktabs = T,escape=T, longtable=T,caption="Attitudes toward Taxes", format =format ) %>% 
+kable(att01,booktabs = T,escape=T, longtable=T,caption="Attitudes toward Taxes", format =format,col.names = colnames) %>% 
  kable_styling(latex_options = c("repeat_header", "scale_down"),
                 full_width = F,
                 position = "float_left",
@@ -280,7 +310,7 @@ red01$pregunta[duplicated(red01$pregunta)] <- NA
 ```
 
 ```{r Redistribution2,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-kable(red01,booktabs = T, escape=T, longtable=T,caption="Redistribution", format =format ) %>% 
+kable(red01,booktabs = T, escape=T, longtable=T,caption="Redistribution", format =format,col.names = colnames) %>% 
  kable_styling(latex_options = c("repeat_header", "scale_down"),
                 full_width = F,
                 position = "float_left",
@@ -304,42 +334,19 @@ kable(red01,booktabs = T, escape=T, longtable=T,caption="Redistribution", format
 <!-- ``` -->
 
 \pagebreak
-## Background vars {.tabset}
+## Información individual {.tabset}
 
 ```{r}
-# back01 <- xlsx::read.xlsx(file = "data/background_vars.xlsx",sheetIndex = 1,encoding = "UTF-8")
-back01 <- fread(file = "data/background_vars.csv")
+back01 <- xlsx::read.xlsx(file = "data/background_vars.xlsx",sheetIndex = 1,encoding = "UTF-8")
+# back01 <- fread(file = "data/background_vars.csv")
 ```
-
 
 ### Sociodemográfico
 
 ```{r socdem,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-
 backsocdem<- filter(back01[,c("var","values","notes")],notes=="sociodemografico")
 backsocdem <- backsocdem[,c("var","values")]
 kable(backsocdem, 
-      linesep="",
-      booktabs = T,
-      escape=T, 
-      longtable=T,
-      caption="Background variables", 
-      format =format,
-      col.names = c("Pregunta","Valores")) %>%
-  kable_styling(latex_options = c("repeat_header"),
-                full_width = F,
-                position = "float_left",
-                font_size = 8) %>% 
-  column_spec(column = 1,width = "16 cm") %>%
-  column_spec(column = 2,width = "12 cm")
-```
-\pagebreak
-### Laboral-ocupacional
-
-```{r laboral,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
-backlab<- filter(back01[,c("var","values","notes")],notes=="laboral-ocupacional")
-backlab <- backlab[,c("var","values")]
-kable(backlab, 
       linesep="",
       booktabs = T,
       escape=T, 
@@ -372,11 +379,29 @@ kable(backsocecon,
                 full_width = F,
                 position = "float_left",
                 font_size = 8) %>% 
-  column_spec(column = 1,width = "16 cm") %>%
+  column_spec(column = 1,width = "20 cm") %>%
   column_spec(column = 2,width = "12 cm")
 ```
 
+\pagebreak
+### Laboral-ocupacional
 
-
-
+```{r laboral,fig.width=6,echo=FALSE,message=FALSE,results="asis", include=TRUE}
+backlab<- filter(back01[,c("var","values","notes")],notes=="laboral-ocupacional")
+backlab <- backlab[,c("var","values")]
+kable(backlab, 
+      linesep="",
+      booktabs = T,
+      escape=T, 
+      longtable=T,
+      caption="Background variables", 
+      format =format,
+      col.names = c("Pregunta","Valores")) %>%
+  kable_styling(latex_options = c("repeat_header"),
+                full_width = F,
+                position = "float_left",
+                font_size = 8) %>% 
+  column_spec(column = 1,width = "18 cm") %>%
+  column_spec(column = 2,width = "12 cm")
+```
 

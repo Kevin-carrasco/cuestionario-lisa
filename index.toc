@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {1.4}Knowledge consciousness}{}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Attitudes toward Taxes}{}{subsection.1.5}%
 \contentsline {subsection}{\numberline {1.6}Redistribution}{}{subsection.1.6}%
-\contentsline {subsection}{\numberline {1.7}Background vars}{}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.7}Información individual}{}{subsection.1.7}%
 \contentsline {subsubsection}{\numberline {1.7.1}Sociodemográfico}{}{subsubsection.1.7.1}%
-\contentsline {subsubsection}{\numberline {1.7.2}Laboral-ocupacional}{}{subsubsection.1.7.2}%
-\contentsline {subsubsection}{\numberline {1.7.3}Socioeconómico}{}{subsubsection.1.7.3}%
+\contentsline {subsubsection}{\numberline {1.7.2}Socioeconómico}{}{subsubsection.1.7.2}%
+\contentsline {subsubsection}{\numberline {1.7.3}Laboral-ocupacional}{}{subsubsection.1.7.3}%

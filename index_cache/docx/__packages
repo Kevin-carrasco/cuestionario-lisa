@@ -1,0 +1,9 @@
+base
+googlesheets4
+googledrive
+dplyr
+data.table
+knitr
+kableExtra
+readxl
+xlsx
