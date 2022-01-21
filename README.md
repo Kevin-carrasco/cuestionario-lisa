@@ -1,4 +1,4 @@
-# Cuestionario investigaciÃ³n sobre Ciencia Social Abierta en AcadÃ©micos chilenos
+# Cuestionario investigación sobre Ciencia Social Abierta en Académicos chilenos
 
 - Cuestionario
 - Otros insumos para la encuesta

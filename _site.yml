@@ -1,11 +1,11 @@
-name: "meritredist2019"
+name: "Lisa2022"
 output_dir: "." # Esto es para que se compile en el rootdir  
 navbar:
-  title: "Moral Tributaria"
+  title: "Ciencia Social Abierta"
   right:
     - text: ""
       icon: fa-github fa-lg
-      href: https://github.com/jciturras/taxes  
+      href: https://github.com/lisa-coes/encuesta  
     - text: "PDF "
       icon: fa-file-pdf
       href: index.pdf    
