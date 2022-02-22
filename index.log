@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.1.21)  21 JAN 2022 13:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.1.21)  22 FEB 2022 18:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -727,12 +727,57 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [1
 
 {c:/Users/kevin/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdfte
-x.map}]pdfTeX warning (ext4): destination with the same identifier (name{page.}
-) has been already used, duplicate ignored
+x.map}]
+Overfull \hbox (15.61365pt too wide) in alignment at lines 94--99
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 99--104
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 104--106
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 106--108
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 108--144
+[] [] [] [] [] 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.148 
        [2]
+Overfull \hbox (15.61365pt too wide) in alignment at lines 154--159
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 159--164
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 164--166
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 166--168
+[] [] [] [] [] 
+ []
+
+
 Overfull \hbox (11.09903pt too wide) in paragraph at lines 169--169
 []|\T1/ptm/m/n/8 transp01_01|  
  []
@@ -832,12 +877,37 @@ Overfull \hbox (11.09903pt too wide) in paragraph at lines 207--207
 []|\T1/ptm/m/n/8 transp02_10|  
  []
 
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 168--208
+[] [] [] [] [] 
+ []
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.212 
        [3]
+Overfull \hbox (15.61365pt too wide) in alignment at lines 218--223
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 223--228
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 228--230
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 230--232
+[] [] [] [] [] 
+ []
+
+
 Overfull \hbox (4.87509pt too wide) in paragraph at lines 239--239
 []|\T1/ptm/m/n/8 data04_01|  
  []
@@ -917,12 +987,37 @@ Overfull \hbox (4.87509pt too wide) in paragraph at lines 269--269
 []|\T1/ptm/m/n/8 data05_05|  
  []
 
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 232--270
+[] [] [] [] [] 
+ []
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.274 
        [4]
+Overfull \hbox (15.61365pt too wide) in alignment at lines 281--286
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 286--291
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 291--293
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 293--295
+[] [] [] [] [] 
+ []
+
+
 Overfull \hbox (8.42715pt too wide) in paragraph at lines 310--310
 []|\T1/ptm/m/n/8 repro07_01|  
  []
@@ -962,12 +1057,37 @@ Overfull \hbox (8.42715pt too wide) in paragraph at lines 330--330
 []|\T1/ptm/m/n/8 repro07_08|  
  []
 
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 295--331
+[] [] [] [] [] 
+ []
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.335 
        [5]
+Overfull \hbox (15.61365pt too wide) in alignment at lines 341--346
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 346--351
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 351--353
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 353--355
+[] [] [] [] [] 
+ []
+
+
 Overfull \hbox (11.97893pt too wide) in paragraph at lines 362--362
 []|\T1/ptm/m/n/8 access04_01|  
  []
@@ -1022,12 +1142,41 @@ Overfull \hbox (11.97893pt too wide) in paragraph at lines 382--382
 []|\T1/ptm/m/n/8 access05_07|  
  []
 
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 355--383
+[] [] [] [] [] 
+ []
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.387 
        [6]
+Overfull \hbox (15.61365pt too wide) in alignment at lines 393--398
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 398--403
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 403--405
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 405--407
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (15.61365pt too wide) in alignment at lines 407--417
+[] [] [] [] [] 
+ []
+
 
 Package caption Warning: Unused \captionsetup[figure] on input line \caption@op
 t@figure@lineno .
@@ -1050,16 +1199,16 @@ Package rerunfilecheck Info: File `index.out' has not changed.
 Here is how much of TeX's memory you used:
  14068 strings out of 480181
  232942 string characters out of 5890848
- 554469 words of memory out of 5000000
+ 559571 words of memory out of 5000000
  31759 multiletter control sequences out of 15000+600000
  517075 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,10n,106p,407b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,10n,106p,430b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/kevin/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.en
 c}<c:/Users/kevin/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb
 8a.pfb><c:/Users/kevin/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times
 /utmr8a.pfb>
-Output written on index.pdf (7 pages, 44236 bytes).
+Output written on index.pdf (7 pages, 45893 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  84 compressed objects within 1 object stream

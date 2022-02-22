@@ -121,7 +121,7 @@ com01$pregunta[duplicated(com01$pregunta)] <- NA
 ```
 
 ```{r}
-colnames <- c("Código","Pregunta","Indicador","Valores")
+colnames <- c("Código","Pregunta","Indicador","Valores", "Fuente")
 ```
 
 
@@ -132,9 +132,11 @@ kable(com01,booktabs = T, escape=T, longtable=T,caption="Ciencia Social Abierta"
                 position = "float_left",
                 font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "14 cm") %>%
-  column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "10 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%
+  column_spec(column = 5,width = "4 cm") %>%
+  collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
 ```
 
 \pagebreak
@@ -160,9 +162,10 @@ kable(ref01,booktabs = T, escape=T, longtable=T,caption="Diseño transparente", 
                 position = "float_left",
                 font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "14 cm") %>%
-  column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major") 
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "10 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%   
+  column_spec(column = 5,width = "4 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major") 
 ```
 
 \pagebreak
@@ -187,9 +190,11 @@ kable(sec01,booktabs = T, escape=T, longtable=T,caption="Apertura de datos", for
                 position = "float_left",
                 font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "14 cm") %>%
-  column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "10 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%   
+  column_spec(column = 5,width = "4 cm") %>% 
+  collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
 ```
 
 \pagebreak
@@ -213,9 +218,11 @@ kable(kno01,booktabs = T,escape=T, longtable=T,caption="Investigación reproduci
                 position = "float_left",
                 font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "14 cm") %>%
-  column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle")
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "10 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%   
+  column_spec(column = 5,width = "4 cm") %>% 
+  collapse_rows(columns = c(2),valign = "middle")
 ```
 
 \pagebreak
@@ -241,9 +248,11 @@ kable(att01,booktabs = T,escape=T, longtable=T,caption="Acceso abierto", format 
                 position = "float_left",
                 font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "14 cm") %>%
-  column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "10 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%   
+  column_spec(column = 5,width = "4 cm") %>% 
+  collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
 ```
 
 \pagebreak
@@ -268,7 +277,9 @@ kable(att01,booktabs = T,escape=T, longtable=T,caption="Información individual"
                 position = "float_left",
                 font_size = 8) %>%
   column_spec(column = 1,width = "1 cm") %>%
-  column_spec(column = 2,width = "14 cm") %>%
-  column_spec(column = 3,width = "5 cm") %>%
-  column_spec(column = 4,width = "12 cm") %>% collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
+  column_spec(column = 2,width = "10 cm") %>%
+  column_spec(column = 3,width = "10 cm") %>%
+  column_spec(column = 4,width = "8 cm") %>%   
+  column_spec(column = 5,width = "4 cm") %>% 
+  collapse_rows(columns = c(2),valign = "middle",latex_hline = "major")
 ```
